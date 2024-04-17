@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cronômetro - 147 dias</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 50px;
+    }
+    #countdown {
+      font-size: 24px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Cronômetro Diegão</h1>
+<p>101 melhor turma que já teve no colegio</p>
+<p id="countdown"></p>
+
+<script>
+  // Função para calcular o tempo restante
+  function calculateCountdown() {
+    // Data e hora de amanhã às 00:00 (horário de Brasília)
+    var targetDate = new Date();
+    targetDate.setDate(targetDate.getDate() + 1);
+    targetDate.setHours(0, 0, 0, 0);
+
+    // Data e hora atual
+    var now = new Date();
+
+    // Calcula a diferença em milissegundos
+    var difference = targetDate.getTime() - now.getTime();
+
+    // Calcula dias, horas, minutos e segundos restantes
+    var days = Math.floor(difference / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+    // Exibe o resultado no elemento com id "countdown"
+    document.getElementById("countdown").innerHTML = days + " dias, " + hours + " horas, " + minutes + " minutos, " + seconds + " segundos.";
+  }
+
+  // Atualiza o contador a cada segundo
+  setInterval(calculateCountdown, 1000);
+
+  // Calcula o cronômetro pela primeira vez
+  calculateCountdown();
+</script>
+
+</body>
+</html>
